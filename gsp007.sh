@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# script.sh zone region
+# GSP007.sh zone region
 
 # Task 1: Set the default region and zone for all resources
 gcloud config set compute/zone $1
