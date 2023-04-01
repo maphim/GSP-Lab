@@ -1,12 +1,15 @@
 #!/bin/bash
 
+# Please get zone from task 2
+ZONE="us-east1-b"
+REGION="us-east1"
+
 # Task 1. Create a project jumphost instance
 
 # Set the default values for the instance
-INSTANCE_NAME="nucleus-jumphost-985"
+INSTANCE_NAME="nucleus-jumphost-273"
 MACHINE_TYPE="f1-micro"
 IMAGE_FAMILY="debian-10"
-ZONE="us-central1-a"
 
 # Create the instance
 gcloud compute instances create $INSTANCE_NAME \
@@ -19,8 +22,7 @@ gcloud compute instances create $INSTANCE_NAME \
 # Task 2. Create a Kubernetes service cluster
 
 # Set the default values for the cluster
-CLUSTER_NAME="my-cluster"
-ZONE="us-west3-b"
+CLUSTER_NAME="nucleus-cluster"
 
 # Create the cluster
 gcloud container clusters create $CLUSTER_NAME \
@@ -40,16 +42,14 @@ kubectl expose deployment hello-app \
 # Task 3. Set up an HTTP load balancer
 
 # Set the default values for the load balancer
-INSTANCE_TEMPLATE_NAME="my-instance-template"
-INSTANCE_GROUP_NAME="my-instance-group"
-TARGET_POOL_NAME="my-target-pool"
+INSTANCE_TEMPLATE_NAME="nucleus-instance-template"
+INSTANCE_GROUP_NAME="nucleus-instance-group"
+TARGET_POOL_NAME="nucleus-target-pool"
 FIREWALL_RULE_NAME="permit-tcp-rule-785"
-HEALTH_CHECK_NAME="my-health-check"
-BACKEND_SERVICE_NAME="my-backend-service"
-URL_MAP_NAME="my-url-map"
-FORWARDING_RULE_NAME="my-forwarding-rule"
-ZONE="us-central1-a"
-REGION="us-central1"
+HEALTH_CHECK_NAME="nucleus-health-check"
+BACKEND_SERVICE_NAME="nucleus-backend-service"
+URL_MAP_NAME="nucleus-url-map"
+FORWARDING_RULE_NAME="nucleus-forwarding-rule"
 
 # Create an instance template
 gcloud compute instance-templates create $INSTANCE_TEMPLATE_NAME \
