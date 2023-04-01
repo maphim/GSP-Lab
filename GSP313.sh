@@ -3,11 +3,13 @@
 # Please get zone from task 2
 ZONE="us-east1-b"
 REGION="us-east1"
+INSTANCE_NAME="nucleus-jumphost-906"
+FIREWALL_RULE_NAME="accept-tcp-rule-663"
+EXPOSE_APP_PORT=8080
 
 # Task 1. Create a project jumphost instance
 
 # Set the default values for the instance
-INSTANCE_NAME="nucleus-jumphost-273"
 MACHINE_TYPE="f1-micro"
 IMAGE_FAMILY="debian-10"
 
@@ -32,10 +34,10 @@ gcloud container clusters create $CLUSTER_NAME \
 kubectl create deployment hello-app \
 --image=gcr.io/google-samples/hello-app:2.0
 
-# Expose the app on port 8082
+# Expose the app on port
 kubectl expose deployment hello-app \
 --type=LoadBalancer \
---port=8082 \
+--port=$EXPOSE_APP_PORT \
 --target-port=8080
 
 
@@ -45,7 +47,6 @@ kubectl expose deployment hello-app \
 INSTANCE_TEMPLATE_NAME="nucleus-instance-template"
 INSTANCE_GROUP_NAME="nucleus-instance-group"
 TARGET_POOL_NAME="nucleus-target-pool"
-FIREWALL_RULE_NAME="permit-tcp-rule-785"
 HEALTH_CHECK_NAME="nucleus-health-check"
 BACKEND_SERVICE_NAME="nucleus-backend-service"
 URL_MAP_NAME="nucleus-url-map"
